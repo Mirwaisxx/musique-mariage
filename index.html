@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Mariage de Papa - Boîte à Musique</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f6f0;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        h1 { color: #8e7d67; font-size: 24px; margin-bottom: 5px; }
+        p { color: #666; font-size: 14px; margin-bottom: 25px; }
+        .input-group { margin-bottom: 20px; text-align: left; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; color: #555; font-size: 14px;}
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px; /* Évite le zoom automatique sur smartphone */
+        }
+        button {
+            background-color: #8e7d67;
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            width: 100%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover { background-color: #766652; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎵 La Boîte à Musique 🎵</h1>
+        <p>Choisissez un morceau pour faire danser les mariés !</p>
+        
+        <form action="https://api.web3forms.com/submit" method="POST">
+            
+            <input type="hidden" name="access_key" value="fbd569ce-eb41-40c0-af5f-843e89383a0d">
+            
+            <input type="hidden" name="redirect" value="https://web3forms.com/success">
+
+            <div class="input-group">
+                <label for="music">Titre de la chanson et Artiste :</label>
+                <input type="text" id="music" name="Chanson demandée" placeholder="Ex: Les Démons de Minuit - Images" required>
+            </div>
+
+            <div class="input-group">
+                <label for="name">Votre Nom / Prénom (Optionnel) :</label>
+                <input type="text" id="name" name="Nom de l'invité" placeholder="Ex: Cousin Hubert">
+            </div>
+
+            <button type="submit">Envoyer au DJ 🚀</button>
+        </form>
+    </div>
+
+</body>
+</html>
