@@ -1,78 +1,263 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le Mariage de Papa - Boîte à Musique</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f9f6f0;
-            color: #333;
-            text-align: center;
-            padding: 20px;
-            margin: 0;
-        }
-        .container {
-            background-color: #ffffff;
-            max-width: 400px;
-            margin: 40px auto;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-        h1 { color: #8e7d67; font-size: 24px; margin-bottom: 5px; }
-        p { color: #666; font-size: 14px; margin-bottom: 25px; }
-        .input-group { margin-bottom: 20px; text-align: left; }
-        label { display: block; margin-bottom: 5px; font-weight: 600; color: #555; font-size: 14px;}
-        input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-size: 16px; /* Évite le zoom automatique sur smartphone */
-        }
-        button {
-            background-color: #8e7d67;
-            color: white;
-            border: none;
-            padding: 14px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 8px;
-            width: 100%;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        button:hover { background-color: #766652; }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>La Playlist des Mariés</title>
+
+  <!-- Google Fonts : Polices super modernes et haut de gamme -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #0B1325;       /* Ton bleu nuit très sombre et chic */
+      --card-white: #ffffff;    /* Carte blanche pur pour le contraste */
+      --text-main: #0B1325;     /* Texte en bleu nuit foncé */
+      --text-muted: #5C6B73;    /* Texte secondaire plus discret */
+      --input-bg: #F8F9FA;      /* Fond des cases légèrement grisé */
+      --radius-lg: 16px;
+      --radius-md: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      background-color: var(--bg-dark);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      overflow: hidden;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content:center;
+      padding: 20px;
+    }
+
+    /* Animation d'ouverture fluide : Glissement du bas vers le haut + Fondu */
+    @keyframes appOuverture {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Conteneur principal (La carte blanche) */
+    .wrap {
+      width: 100%;
+      max-width: 480px;
+      background-color: var(--card-white);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      
+      /* Application de l'effet d'ouverture propre */
+      animation: appOuverture 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--text-main);
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    p.lead {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 13px;
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      height: 54px;
+      padding: 0 16px;
+      font-size: 16px; /* 16px Strict pour bloquer le zoom automatique des iPhones */
+      border-radius: var(--radius-md);
+      border: 1px solid #E2E8F0;
+      background-color: var(--input-bg);
+      color: var(--text-main);
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    input[type="text"]::placeholder {
+      color: #94A3B8;
+    }
+
+    input[type="text"]:focus {
+      border-color: var(--text-main);
+      background-color: #ffffff;
+      box-shadow: 0 0 0 4px rgba(11, 19, 37, 0.05);
+    }
+
+    /* Le Bouton Moderne Bleu Nuit / Texte Blanc */
+    .btn {
+      width: 100%;
+      height: 54px;
+      background-color: var(--text-main);
+      color: #ffffff;
+      border: none;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: 8px;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn:disabled {
+      background-color: #94A3B8;
+      cursor: not-allowed;
+    }
+
+    /* Zone de texte de confirmation d'envoi */
+    .notice {
+      min-height: 20px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 500;
+      margin-top: 14px;
+    }
+
+    .foot {
+      margin-top: 24px;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      border-top: 1px solid #F1F5F9;
+      padding-top: 16px;
+    }
+
+    /* Adaptabilité parfaite sur les petits écrans de téléphone */
+    @media (max-height: 600px) {
+      .wrap {
+        padding: 20px 16px;
+      }
+      h1 { font-size: 22px; }
+      input[type="text"], .btn { height: 48px; }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>🎵 La Boîte à Musique 🎵</h1>
-        <p>Choisissez un morceau pour faire danser les mariés !</p>
-        
-        <form action="https://api.web3forms.com/submit" method="POST">
-            
-            <input type="hidden" name="access_key" value="fbd569ce-eb41-40c0-af5f-843e89383a0d">
-            
-            <input type="hidden" name="redirect" value="https://web3forms.com/success">
+  <main class="wrap">
+    <header>
+      <h1>Faites vibrer la piste ! 🎵</h1>
+      <p class="lead">Une idée de morceau pour faire danser les mariés ? Envoyez-la directement au DJ.</p>
+    </header>
 
-            <div class="input-group">
-                <label for="music">Titre de la chanson et Artiste :</label>
-                <input type="text" id="music" name="Chanson demandée" placeholder="Ex: Les Démons de Minuit - Images" required>
-            </div>
+    <!-- Ton formulaire connecté à Web3Forms avec ta clé -->
+    <form action="https://api.web3forms.com/submit" method="POST" id="songForm">
+      <input type="hidden" name="access_key" value="fbd569ce-eb41-40c0-af5f-843e89383a0d">
+      <input type="hidden" name="redirect" value="https://web3forms.com/success">
 
-            <div class="input-group">
-                <label for="name">Votre Nom / Prénom (Optionnel) :</label>
-                <input type="text" id="name" name="Nom de l'invité" placeholder="Ex: Cousin Hubert">
-            </div>
+      <div class="form-group">
+        <label for="music">Titre de la chanson & Artiste</label>
+        <input type="text" id="music" name="Chanson demandée" placeholder="Ex: Dancing Queen - ABBA" required autocomplete="off" />
+      </div>
 
-            <button type="submit">Envoyer au DJ 🚀</button>
-        </form>
-    </div>
+      <div class="form-group">
+        <label for="name">Votre Nom (Optionnel)</label>
+        <input type="text" id="name" name="Nom de l'invité" placeholder="Ex: Cousin Hubert" autocomplete="off" />
+      </div>
 
+      <button type="submit" class="btn" id="sendBtn">Envoyer la musique</button>
+    </form>
+
+    <div class="notice" id="notice"></div>
+
+    <div class="foot">Application de suggestions musicales — Pour le mariage de Papa</div>
+  </main>
+
+  <script>
+    const form = document.getElementById('songForm');
+    const notice = document.getElementById('notice');
+    const sendBtn = document.getElementById('sendBtn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const musicInput = document.getElementById('music');
+      if (!musicInput.value.trim()) {
+        notice.textContent = 'Veuillez indiquer une chanson.';
+        notice.style.color = '#EF4444';
+        musicInput.focus();
+        return;
+      }
+
+      // Changement d'état du bouton pendant l'envoi
+      sendBtn.disabled = true;
+      sendBtn.textContent = 'Envoi en cours…';
+      notice.textContent = '';
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: formData
+        });
+
+        if (response.ok) {
+          notice.textContent = "Merci ! La demande a bien été transmise 🎉";
+          notice.style.color = '#10B981';
+          form.reset();
+        } else {
+          notice.textContent = "Erreur lors de l'envoi. Réessayez.";
+          notice.style.color = '#EF4444';
+        }
+      } catch (error) {
+        notice.textContent = "Impossible de joindre le serveur.";
+        notice.style.color = '#EF4444';
+      } finally {
+        sendBtn.disabled = false;
+        sendBtn.textContent = 'Envoyer la musique';
+        setTimeout(() => { notice.textContent = ''; }, 5000);
+      }
+    });
+  </script>
 </body>
 </html>
