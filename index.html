@@ -350,9 +350,9 @@ async function submitForm(){
  
   const fd = new FormData();
   fd.append('access_key','fbd569ce-eb41-40c0-af5f-843e89383a0d');
-  fd.append('Chanson demandée', musicEl.value.trim());
-  fd.append("Nom de l'invité", nameEl.value.trim() || 'Anonyme');
-  if(msgEl.value.trim()) fd.append('Message pour le DJ', msgEl.value.trim());
+  fd.append('Chanson demandee', musicEl.value.trim());
+  fd.append("Nom de l'invite", nameEl.value.trim() || 'Anonyme');
+  if(msgEl.value.trim()) fd.append('Message pour les DJ', msgEl.value.trim());
  
   try {
     const r = await fetch('https://api.web3forms.com/submit', { method:'POST', body:fd });
